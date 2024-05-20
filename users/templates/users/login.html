@@ -2,32 +2,8 @@
 
 {% load static %}
 
-
 	<title>Login V16</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{% static 'registration/images/icons/favicon.ico' %}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/vendor/bootstrap/css/bootstrap.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/vendor/animate/animate.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/vendor/css-hamburgers/hamburgers.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/vendor/animsition/css/animsition.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/vendor/select2/select2.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/vendor/daterangepicker/daterangepicker.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/css/util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'registration/css/main.css' %}">
-<!--===============================================================================================-->
+
 {% block content %}
 
 	<div class="limiter">
@@ -36,20 +12,20 @@
 				<span class="login100-form-title p-b-41">
 					Account Login
 				</span>
-				<form class="login100-form validate-form p-b-33 p-t-5">
-
+				<form action="{% url 'users:login' %}" method="POST" class="login100-form validate-form p-b-33 p-t-5">
+					{% csrf_token %}
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" name="username" placeholder="User name">
+						{{ form.email }}
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+						{{ form.password }}
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn">
+						<button type="submit" class="login100-form-btn">
 							Login
 						</button>
 					</div>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users',
+    # 'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -102,6 +103,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+    # 'users.auth_backend.EmailBackend',  # Custom backend for email authentication
+    'users.auth_backend.CustomModelBackend',
+]
+
 AUTH_USER_MODEL = 'users.User'
 
 # Internationalization
@@ -130,6 +137,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/img/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')
+
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

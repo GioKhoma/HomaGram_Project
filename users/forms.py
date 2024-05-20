@@ -8,43 +8,29 @@ from .models import User
 # class CreateUserForm(UserCreationForm):
 #     class Meta:
 #         model = User
-#         fields = ['username', 'email', 'first_name', 'last_name',
+#         fields = ['email', 'first_name', 'last_name',
 #                   'mobile_number', 'about']
 
-# class Meta:
-#     model = User
-#     exclude = ('is_active', 'is_staff', 'date_joined', 'permission', 'password')
 
-# def clean_password2(self):
-#     # Check that the two password entries match
-#     password1 = self.cleaned_data.get("password1")
-#     password2 = self.cleaned_data.get("password2")
-#     if password1 and password2 and password1 != password2:
-#         raise forms.ValidationError("Passwords don't match")
-#     return password2
+# class LoginForm(AuthenticationForm):
+#     username = forms.CharField(widget=TextInput())
+#     password = forms.CharField(widget=PasswordInput())
 
-# def clean_phone(self, *args, **kwargs):
-#     mobile_number = self.cleaned_data.get('mobile_number')
-#     if not mobile_number.isdigit():
-#         raise forms.ValidationError('You must input valid phone number!')
-#     else:
-#         return mobile_number
-#
-# def save(self, commit=True):
-#     # Save the provided password in hashed format
-#     user = super().save(commit=False)
-#     user.set_password(self.cleaned_data["password2"])
-#     if commit:
-#         user.save()
-#     return user
+class LoginForm(forms.Form):
+    email = forms.CharField(label="email", widget=forms.EmailInput(attrs={'class': "input100",
+                                                                          'id': 'email',
+                                                                          "placeholder": "Email",
+                                                                          "type": "email",
+                                                                          "name": "email"}))
+
+    password = forms.CharField(label="password", widget=forms.PasswordInput(attrs={'class': "input100",
+                                                                                   'id': 'password',
+                                                                                   "type": "password",
+                                                                                   "name": "password",
+                                                                                   'placeholder': 'Password'}))
 
 
-class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=TextInput())
-    password = forms.CharField(widget=PasswordInput())
-
-
-class CreateUserForm(UserCreationForm):
+class CreateUserForm(forms.ModelForm):
     SEX_CHOICES = (
         ('male', 'Male'),
         ('female', 'Female'),
@@ -56,9 +42,9 @@ class CreateUserForm(UserCreationForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'id': 'password2',
                                                                   'placeholder': 'Confirm Password'}))
 
-    profile_picture = forms.CharField(widget=forms.EmailInput(attrs={'class': 'input100',
-                                                                     'id': 'profile_picture',
-                                                                     'accept': 'image/*'}))
+    profile_picture = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'input_container',
+                                                                              'id': 'profile_picture',
+                                                                              'accept': 'image/*'}))
 
     email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'input100', 'placeholder': 'Email',
                                                            'id': 'email'}))
@@ -90,6 +76,36 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = (
-            'username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'profile_picture',
+            'username', 'first_name', 'last_name', 'email', 'password1', 'password2',
             'mobile_number',
-            'about', 'sex')
+            'about',
+            'sex',
+            'profile_picture'
+        )
+
+        exclude = ('is_active', 'is_staff', 'date_joined', 'permission', 'password')
+
+    def clean_password2(self):
+        # Check that the two password entries match
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError("Passwords don't match")
+        return password2
+
+    #
+    # def clean_phone(self, *args, **kwargs):
+    #     mobile_number = self.cleaned_data.get('phone')
+    #     if not mobile_number.isdigit():
+    #         raise forms.ValidationError('You must input valid phone number!')
+    #     else:
+    #         return mobile_number
+    #
+    def save(self, commit=True):
+        # Save the provided password in hashed format
+        user = super().save(commit=False)
+        print('register user form save---------------------------------')
+        user.set_password(self.cleaned_data["password2"])
+        if commit:
+            user.save()
+        return user

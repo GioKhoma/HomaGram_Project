@@ -6,6 +6,8 @@
 
 
 {% block content %}
+
+
 	
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('{% static 'registration/images/bg-01.jpg' %}');">
@@ -15,10 +17,11 @@
 				</span>
 				<form action="{% url 'users:registration' %}" method="POST" enctype="multipart/form-data" class="login100-form validate-form p-b-33 p-t-5">
 					{% csrf_token %}
+
 					<div class="right-side">
 						<div class="wrap-input100 validate-input" data-validate = "Enter username">
-							{{ form.username }}
-							{{ form.username.errors }}
+								{{ form.username}}
+<!--							{{ form.username.errors }}-->
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 
@@ -52,17 +55,21 @@
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 
-<!--						<div class="wrap-input100 validate-input" data-validate = "Enter username">-->
-<!--							{{ form.sex }}-->
-<!--							{{ form.sex.errors }}-->
-<!--							<span class="focus-input100" data-placeholder="&#xe82a;"></span>-->
-<!--						</div>-->
+						<div class="wrap-input100 validate-input sexfield" data-validate = "Enter username">
+							{{ form.sex }}
+							{{ form.sex.errors }}
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
 
-<!--						<div class="wrap-input100 validate-input" data-validate = "Enter username">-->
-<!--							{{ form.profile_picture }}-->
-<!--							{{ form.profile_picture.errors }}-->
-<!--							<span class="focus-input100" data-placeholder="&#xe82a;"></span>-->
-<!--						</div>-->
+						<div class="wrap-input100 validate-input img-thumbnail" data-validate = "Enter username">
+							<div class="input_container">
+							  <label for="files" class="btn">Browse Files</label>
+							  	{{ form.profile_picture }}
+								{{ form.profile_picture.errors }}
+							</div>
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
 
 						<div class="wrap-input100 validate-input" data-validate="Enter password">
 							{{ form.password1 }}
@@ -77,8 +84,10 @@
 						</div>
 					</div>
 
+<!--					formaction="{% url 'users:login' %}"-->
+
 					<div class="container-login100-form-btn m-t-32">
-						<button class="login100-form-btn" type="submit">
+						<button type="submit" class="login100-form-btn">
 							Sign Up
 						</button>
 					</div>
@@ -109,6 +118,15 @@
 	<script src="{% static 'registration/js/main.js' %}"></script>
 
 {% endblock %}
+
+
+<script>
+	document.querySelector("#files").onchange = function() {
+  const fileName = this.files[0]?.name;
+  const label = document.querySelector("label[for=files]");
+  label.innerText = fileName ?? "Browse Files";
+};
+</script>
 
 
 
