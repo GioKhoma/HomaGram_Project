@@ -42,7 +42,7 @@ def send_email(request):
             request.POST['subject'],
             template,
             settings.EMAIL_HOST_USER,
-            ['emailsender1432@gmail.com']
+            ['YOUR_EMAIL_GOES_HERE']
         )
 
         email.fail_silently = False
