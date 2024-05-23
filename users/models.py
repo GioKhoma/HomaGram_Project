@@ -2,6 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
 from django.core.validators import validate_email
+from django.utils.text import slugify
 
 
 class UserManager(BaseUserManager):
@@ -74,6 +75,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=50)
     mobile_number = models.CharField(max_length=20)
     about = models.CharField(max_length=250)
+    # slug = models.SlugField(default='', blank=True, null=True)
     # permission = models.BooleanField(default=False)
     # is_active = models.BooleanField(default=True)
     # is_staff = models.BooleanField(default=False)

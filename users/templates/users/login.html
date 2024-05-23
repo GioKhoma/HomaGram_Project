@@ -1,4 +1,4 @@
-{% extends 'users/base.html' %}
+{% extends 'homagram_app/base.html' %}
 
 {% load static %}
 
@@ -10,6 +10,24 @@
 		<div class="container-login100" style="background-image: url('{% static 'registration/images/bg-01.jpg' %}');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
+					{% if messages %}
+					<div class="messages-container" id="messages">
+						<ul class="messages">
+							{% for message in messages %}
+							<li class="message {% if message.tags %} {{ message.tags }}{% endif %}">
+								{{ message }}
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+					{% endif %}
+
+<script>
+  setTimeout(function() {
+	document.getElementById('messages').style.display = 'none';
+  }, 3000);
+</script>
+
 					Account Login
 				</span>
 				<form action="{% url 'users:login' %}" method="POST" class="login100-form validate-form p-b-33 p-t-5">
@@ -25,9 +43,11 @@
 					</div>
 
 					<div class="container-login100-form-btn m-t-32">
+						<a class="signup_button" href="{% url 'users:registration' %}">Sign Up</a>
 						<button type="submit" class="login100-form-btn">
 							Login
 						</button>
+						<a class="forgotpass_button" href="{% url 'users:forgot_password' %}">Forgot Password?</a>
 					</div>
 
 				</form>

@@ -241,7 +241,7 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/background_photo2.jpg") top center;
   background-size: cover;
 }
 
@@ -1071,6 +1071,61 @@ section {
   }
 }
 
+/*for inner -----------*/
+
+
+.breadcrumbs_inner {
+  padding: 20px 0;
+  background: #dfdfe0;
+  width: 100vw;
+  /*box-sizing: border-box;*/
+  margin: 0;
+  top: 0;
+  position: fixed;
+  left: 0;
+  z-index: 1000;
+}
+
+.breadcrumbs_inner h2 {
+  font-size: 26px;
+  font-weight: 300;
+}
+
+.breadcrumbs_inner ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 15px;
+}
+
+.breadcrumbs_inner ol li+li {
+  padding-left: 10px;
+}
+
+.breadcrumbs_inner ol li+li::before {
+  display: inline-block;
+  padding-right: 10px;
+  color: #0e2442;
+  content: "|";
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs_inner .d-flex {
+    display: block !important;
+  }
+
+  .breadcrumbs_inner ol {
+    display: block;
+  }
+
+  .breadcrumbs_inner ol li {
+    display: inline-block;
+  }
+}
+
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -1105,42 +1160,138 @@ section {
   }
 }
 
-
-.input_container {
-  border: None
-  /*border-radius: 5px;*/
-  padding: 2px 10px;
-  font-family: 'Helvetica', sans-serif;
-  transition: .5s;
-  position: relative;
+/*footer_inner ---------------*/
+#footer_inner {
+  padding: 15px;
+  color: #f4f6fd;
+  font-size: 14px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 9999;
+  background: #040b14;
 }
 
-.input_container:hover {
-  background-color: #333;
+#footer_inner .copyright {
+  text-align: center;
 }
 
-input[type="file"] {
-  display: none;
+#footer_inner .credits {
+  padding-top: 5px;
+  text-align: center;
+  font-size: 13px;
+  color: #eaebf0;
 }
 
-label.btn {
-  display: inline-block;
-  cursor: pointer;
-  background-color: #333;
-  color: white;
-  padding: 10px 40px;
-  /*border-radius: 5px;*/
-  font-family: 'Helvetica', sans-serif;
-  transition: background-color 0.3s ease;
-  position: absolute; /* Set the button to absolute positioning */
-  right: 40px; /* Adjust the distance from the right edge */
-  /*top: 50%; !* Center vertically *!*/
-  /*transform: translateY(-50%);*/
-
-
+@media (max-width: 1199px) {
+  #footer_inner {
+    position: static;
+    width: auto;
+    padding-right: 20px 15px;
+  }
 }
 
-label.btn:hover {
-  background-color: #444;
-  color: white;
+/*.input_container {*/
+/*  border: None*/
+/*  !*border-radius: 5px;*!*/
+/*  padding: 2px 10px;*/
+/*  font-family: 'Helvetica', sans-serif;*/
+/*  transition: .5s;*/
+/*  position: relative;*/
+/*}*/
+
+/*.input_container:hover {*/
+/*  background-color: #333;*/
+/*}*/
+
+/*input[type="file"] {*/
+/*  display: none;*/
+/*}*/
+
+/*label.btn {*/
+/*  display: inline-block;*/
+/*  cursor: pointer;*/
+/*  background-color: #333;*/
+/*  color: white;*/
+/*  padding: 10px 40px;*/
+/*  !*border-radius: 5px;*!*/
+/*  font-family: 'Helvetica', sans-serif;*/
+/*  transition: background-color 0.3s ease;*/
+/*  position: absolute; !* Set the button to absolute positioning *!*/
+/*  right: 40px; !* Adjust the distance from the right edge *!*/
+/*  !*top: 50%; !* Center vertically *!*!*/
+/*  !*transform: translateY(-50%);*!*/
+
+
+/*}*/
+
+/*label.btn:hover {*/
+/*  background-color: #444;*/
+/*  color: white;*/
+/*}*/
+
+/*=========profile feed===========*/
+
+
+
+.profile_feed {
+    align-items: center;
+    width: 300px;
+    height: 250px;
+    margin: 40px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
 }
+.profile_feed img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.profile_feed h2 {
+    font-size: 20px;
+    margin: 5px 0;
+}
+.profile_feed p {
+    font-size: 14px;
+    color: #666;
+    margin: 10px 0;
+}
+
+/*=====signup button ============*/
+
+.container-login100-form-btn {
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.signup_button {
+    position: absolute;
+    right: 500px;
+    top: 5px;
+    font-size: 19px;
+}
+
+.signup_button:hover {
+    color: #333333;
+}
+
+
+.forgotpass_button {
+  position: absolute;
+    right: 35px;
+    top: 5px;
+    font-size: 19px;
+}
+
+.forgotpass_button:hover {
+    color: #333333;
+}
+

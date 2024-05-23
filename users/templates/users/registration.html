@@ -1,4 +1,4 @@
-{% extends 'users/index.html' %}
+{% extends 'homagram_app/index.html' %}
 
 {% load static %}
 
@@ -21,65 +21,61 @@
 					<div class="right-side">
 						<div class="wrap-input100 validate-input" data-validate = "Enter username">
 								{{ form.username}}
-<!--							{{ form.username.errors }}-->
+							{{ form.username.errors }}
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 
 						<div class="wrap-input100 validate-input" data-validate = "Enter username">
 							{{ form.first_name }}
-<!--							{{ form.first_name.errors }}-->
+							{{ form.first_name.errors }}
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 
 						<div class="wrap-input100 validate-input" data-validate = "Enter username">
 							{{ form.last_name }}
-<!--							{{ form.last_name.errors }}-->
+							{{ form.last_name.errors }}
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 
 						<div class="wrap-input100 validate-input" data-validate = "Enter username">
 							{{ form.email }}
-<!--							{{ form.email.errors }}-->
+							{{ form.email.errors }}
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 
 						<div class="wrap-input100 validate-input" data-validate = "Enter username">
 							{{ form.mobile_number }}
-<!--							{{ form.phone.errors }}-->
+							{{ form.mobile_number.errors }}
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 
 						<div class="wrap-input100 validate-input" data-validate = "Enter username">
 							{{ form.about }}
-<!--							{{ form.about.errors }}-->
+							{{ form.about.errors }}
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 
-						<div class="wrap-input100 validate-input sexfield" data-validate = "Enter username">
-							{{ form.sex }}
-							{{ form.sex.errors }}
-							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
-						</div>
+<!--						<div class="wrap-input100 validate-input sexfield" data-validate = "Enter username">-->
+<!--							{{ form.sex }}-->
+<!--							{{ form.sex.errors }}-->
+<!--							<span class="focus-input100" data-placeholder="&#xe82a;"></span>-->
+<!--						</div>-->
 
-						<div class="wrap-input100 validate-input img-thumbnail" data-validate = "Enter username">
-							<div class="input_container">
-							  <label for="files" class="btn">Browse Files</label>
-							  	{{ form.profile_picture }}
-								{{ form.profile_picture.errors }}
-							</div>
-
-							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
-						</div>
+<!--						<div class="wrap-input100 validate-input img-thumbnail" data-validate = "Enter username">-->
+<!--							  	{{ form.profile_picture }}-->
+<!--								{{ form.profile_picture.errors }}-->
+<!--							<span class="focus-input100" data-placeholder="&#xe82a;"></span>-->
+<!--						</div>-->
 
 						<div class="wrap-input100 validate-input" data-validate="Enter password">
 							{{ form.password1 }}
-<!--							{{ form.password1.errors }}-->
+							{{ form.password1.errors }}
 							<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 						</div>
 
 						<div class="wrap-input100 validate-input" data-validate="Enter password">
 							{{ form.password2 }}
-<!--							{{ form.password2.errors }}-->
+							{{ form.password2.errors }}
 							<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 						</div>
 					</div>
@@ -120,13 +116,6 @@
 {% endblock %}
 
 
-<script>
-	document.querySelector("#files").onchange = function() {
-  const fileName = this.files[0]?.name;
-  const label = document.querySelector("label[for=files]");
-  label.innerText = fileName ?? "Browse Files";
-};
-</script>
 
 
 
