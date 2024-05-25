@@ -8,14 +8,17 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from homagram import settings
 from django.http import JsonResponse
+from .forms import UserProfileForm
+from django.shortcuts import get_object_or_404
 
 
-@login_required
-def index(request):
+# @login_required
+def index(request, user_id):
     # form = UserProfileForm()
-    users = User.objects.get(first_name=request.user.first_name, last_name=request.user.last_name)
-
-    context = {'users': users,
+    # users = User.objects.get(first_name=request.user.first_name, last_name=request.user.last_name, id=user_id)
+    user = get_object_or_404(User, id=user_id)
+    # print(users)
+    context = {'users': user,
                # 'form': form,
                'user': request.user,
                }
@@ -27,7 +30,13 @@ def inner_page(request):
 
 
 def feed_page(request):
-    return render(request, 'homagram_app/feed_page.html')
+    form = UserProfileForm()
+    users = User.objects.filter(is_superuser=False)
+
+    context = {'form': form,
+               'users': users,
+               }
+    return render(request, 'homagram_app/feed_page.html', context)
 
 
 def send_email(request):

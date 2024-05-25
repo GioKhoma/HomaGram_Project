@@ -4,37 +4,10 @@
 
 {% block content %}
 
+
   <!-- ======= Mobile nav toggle button ======= -->
   <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
 
-  <!-- ======= Header ======= -->
-<!--  <header id="header">-->
-<!--    <div class="d-flex flex-column">-->
-
-<!--      <div class="profile">-->
-<!--        <img src="../../../static/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">-->
-<!--        <h1 class="text-light"><a href="index.html">Alex Smith</a></h1>-->
-<!--        <div class="social-links mt-3 text-center">-->
-<!--          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>-->
-<!--          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>-->
-<!--          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>-->
-<!--          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>-->
-<!--          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <nav id="navbar" class="nav-menu navbar">-->
-<!--        <ul>-->
-<!--          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>-->
-<!--          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>-->
-<!--          <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>-->
-<!--          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>-->
-<!--          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>-->
-<!--          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>-->
-<!--        </ul>-->
-<!--      </nav>&lt;!&ndash; .nav-menu &ndash;&gt;-->
-<!--    </div>-->
-<!--  </header>&lt;!&ndash; End Header &ndash;&gt;-->
 
 <style>
         body {
@@ -48,6 +21,37 @@
             height: 100vh;
             background-color: #f0f0f0;
         }
+
+        .profile_feed img {
+    display: block;
+    max-width: 100px; /* Adjust size as needed */
+    margin: 0 auto 10px; /* Center and add margin below */
+    }
+
+        .profile_feed {
+    position: relative;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    width: 300px; /* Adjust width as needed */
+    overflow: hidden;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Styling the View Profile button */
+.view-profile-btn {
+    display: block;
+    margin-bottom: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.view-profile-btn:hover {
+    background-color: #0dcaf0;
+}
+
 </style>
 
 
@@ -58,7 +62,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Inner Page</h2>
           <ol>
-            <li><a href="{% url 'homagram_app:index' %}">My Profile</a></li>
+            <li><a href="{% url 'homagram_app:index' user.id %}">My Profile</a></li>
             <li><a href="{% url 'users:logout' %}">Log Out</a></li>
           </ol>
         </div>
@@ -66,31 +70,25 @@
       </div>
     </section><!-- End Breadcrumbs -->
 
-    <section class="inner-page">
-      <div class="container">
-        <p>
-          Example inner page template
-        </p>
-      </div>
-    </section>
+<!--    <section class="inner-page">-->
+<!--      <div class="container">-->
+<!--        <p>-->
+<!--          Example inner page template-->
+<!--        </p>-->
+<!--      </div>-->
+<!--    </section>-->
 
 <!--===========profiles on feed===========-->
 
-  <div class="profile_feed">
-        <img src="profile1.jpg" alt="Profile Picture">
-        <h2>John Doe</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec justo nec tortor bibendum faucibus.</p>
-    </div>
+{% for user in users %}
     <div class="profile_feed">
-        <img src="profile2.jpg" alt="Profile Picture">
-        <h2>Jane Smith</h2>
-        <p>Integer et lorem vel nisl interdum dignissim nec eu mauris. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+        <a href="{% url 'homagram_app:index' user.id %}" class="view-profile-btn">View Profile</a>
+        <img src="{{ user.profile_picture.url }}" alt="Profile Picture">
+        <h2>{{ user.first_name|title }} {{ user.last_name|title }}</h2>
+        <p>{{ user.about }}</p>
     </div>
-    <div class="profile_feed">
-        <img src="profile3.jpg" alt="Profile Picture">
-        <h2>Alice Johnson</h2>
-        <p>Phasellus tincidunt lacus vel purus aliquet, ut euismod eros dignissim. Vivamus varius tincidunt purus, at ultricies lacus lacinia sit amet.</p>
-    </div>
+
+{% endfor %}
 
 
   <!-- ======= Footer ======= -->
