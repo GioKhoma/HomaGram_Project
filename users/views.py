@@ -21,16 +21,6 @@ def registration(request):
             print('form is valid')
             form.save()
 
-            # user = form.save()
-            # profile_picture = form.cleaned_data.get('profile_picture')
-            # if profile_picture:
-            #     user_profile = User(user=user, profile_picture=profile_picture)
-            #     user_profile.save()
-
-            # data = form.save(commit=False)
-            # data.save()
-            print('data saved')
-
             return redirect('users:login')
         else:
             print('form is invalid')
@@ -45,33 +35,22 @@ User = get_user_model()
 
 def my_login(request):
     form = LoginForm()
-    # print('get method')
 
     if request.method == 'POST':
-        # print('post method')
         form = LoginForm(request.POST)
-        # print('form instantiated')
 
         if form.is_valid():
-            # email = request.POST.get('email')
-            # password = request.POST.get('password')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            # print('form is valid')
 
-            # uses the authenticate function to check if username and password matches, if they matches it returns None
             user = authenticate(request, email=email, password=password)
 
             if user is not None:
                 login(request, user)
-                # print('user logged in')
-                # uses login function and creating a session
-
-                # auth.login(request, user)
 
                 return redirect('homagram_app:feed')
             else:
-                print('invaild username or password')
+                return HttpResponse('invaild username or password')
 
     context = {'form': form}
 
@@ -152,6 +131,9 @@ def reset_forgot_password(request):
     }
 
     return render(request, 'users/reset_forgot_password.html', context)
+
+
+
 
 
 

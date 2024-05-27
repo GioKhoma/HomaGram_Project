@@ -1,0 +1,17 @@
+{% extends 'homagram_app/base.html' %}
+
+{% load static %}
+
+{% block title %}Home - My Site{% endblock %}
+
+
+{% block content %}
+
+<form method="post" enctype="multipart/form-data" action="{% url 'homagram_app:upload_resume' %}">
+    {% csrf_token %}
+    <input type="file" name="resume">
+    <button type="submit">Upload Resume</button>
+</form>
+
+
+{% endblock %}

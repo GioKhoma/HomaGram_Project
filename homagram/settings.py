@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     'users',
     'homagram_app',
-    # 'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -135,9 +135,9 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_URL = '/img/'
+MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

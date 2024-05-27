@@ -2,27 +2,67 @@ from django.shortcuts import render, redirect, HttpResponse
 # from users.forms import CreateUserForm
 # from .forms import UserProfileForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
 from users.models import User
+from .models import UserProfile, SocialMediaLink
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from homagram import settings
 from django.http import JsonResponse
-from .forms import UserProfileForm
+from .forms import UserForm, UserProfileForm, SocialMediaLinkForm
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 
 # @login_required
-def index(request, user_id):
+def users_profiles(request, user_id):
     # form = UserProfileForm()
-    # users = User.objects.get(first_name=request.user.first_name, last_name=request.user.last_name, id=user_id)
-    user = get_object_or_404(User, id=user_id)
-    # print(users)
-    context = {'users': user,
-               # 'form': form,
-               'user': request.user,
-               }
-    return render(request, 'homagram_app/index.html', context)
+    users = get_object_or_404(User, id=user_id)
+    user_profile = get_object_or_404(UserProfile, user_id=user_id)
+    resume_exists = bool(user_profile.resume)
+    context = {
+        'users': users,
+        # 'form': form,
+        'resume_exists': resume_exists,
+        'user_profile': user_profile,
+        'user': request.user,
+    }
+    return render(request, 'homagram_app/users_profiles.html', context)
+
+@login_required
+def edit_profile(request):
+    user = request.user
+
+    try:
+        user_profile = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        user_profile = UserProfile(user=user)
+
+    # try:
+    #     social_media_links = SocialMediaLink.objects.get(user=user)
+    # except SocialMediaLink.DoesNotExist:
+    #     social_media_links = SocialMediaLink(user=user)
+
+    if request.method == 'POST':
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        # social_media_form = SocialMediaLinkForm(request.POST, instance=social_media_links)
+
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'you profile was successfully updated!')
+            return redirect('homagram_app:users_profiles')
+        else:
+            messages.error(request, 'error')
+    else:
+        profile_form = UserProfileForm(instance=user_profile)
+
+    context = {
+        'forms':
+            [profile_form,
+             # social_media_form,
+             ]
+    }
+
+    return render(request, 'homagram_app/edit_profile.html', context)
 
 
 def inner_page(request):
@@ -30,7 +70,7 @@ def inner_page(request):
 
 
 def feed_page(request):
-    form = UserProfileForm()
+    form = UserForm()
     users = User.objects.filter(is_superuser=False)
 
     context = {'form': form,
@@ -59,8 +99,15 @@ def send_email(request):
 
         return JsonResponse({'status': 'success'})
 
-    return render(request, 'homagram_app/index.html')
+    return render(request, 'homagram_app/users_profiles.html')
 
 
-
-
+@login_required
+def upload_resume(request):
+    if request.method == 'POST':
+        resume = request.FILES.get('resume')
+        if resume:
+            request.user.userprofile.resume = resume
+            request.user.userprofile.save()
+            return redirect('homagram_app:users_profiles', user_id=request.user.id)
+    return render(request, 'homagram_app/upload_resume.html')
