@@ -17,15 +17,113 @@
 				<form action="{% url 'homagram_app:edit_profile' %}" method="POST" enctype="multipart/form-data" class="login100-form validate-form p-b-33 p-t-5">
 					{% csrf_token %}
 
-					<div class="right-side">
-						{% for form in forms %}
+<!--					<div class="right-side">-->
+
 						<div class="wrap-input100 validate-input" data-validate = "Enter username">
-								{{ form.as_p }}
+								{{ form.title_about_text }}
 
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
-						{% endfor %}
-					</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.birth_date }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.age }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.pers_website }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.degree }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.phone }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.email }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.about_text }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.profile_photo }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.about_facts }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.happy_clients }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.projects }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.hours_of_support }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.hard_worker }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.location }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.resume_text }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+								{{ form.resume }}
+
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+
+
+<!--					</div>-->
 
 						<div class="container-login100-form-btn m-t-32">
 							<button type="submit" class="login100-form-btn">
@@ -33,7 +131,6 @@
 							</button>
 	<!--						<a class="signup_button" href="{% url 'users:login' %}">Sing In</a>-->
 						</div>
-
 
 				</form>
 			</div>

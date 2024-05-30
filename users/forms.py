@@ -2,19 +2,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from django.forms.widgets import PasswordInput, TextInput
 from .models import User
+from .choices import GenderChoices
 
-
-# # create/registration user
-# class CreateUserForm(UserCreationForm):
-#     class Meta:
-#         model = User
-#         fields = ['email', 'first_name', 'last_name',
-#                   'mobile_number', 'about']
-
-
-# class LoginForm(AuthenticationForm):
-#     username = forms.CharField(widget=TextInput())
-#     password = forms.CharField(widget=PasswordInput())
 
 class LoginForm(forms.Form):
     email = forms.CharField(label="email", widget=forms.EmailInput(attrs={'class': "input100",
@@ -42,10 +31,6 @@ class CreateUserForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input100', 'id': 'password2',
                                                                   'placeholder': 'Confirm Password'}))
 
-    # profile_picture = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'input_container',
-    #                                                                           'id': 'profile_picture',
-    #                                                                           'accept': 'image/*', }), required=False)
-
     email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'input100', 'placeholder': 'Email',
                                                            'id': 'email'}))
 
@@ -70,8 +55,15 @@ class CreateUserForm(forms.ModelForm):
                                                           'id': 'about',
                                                           'placeholder': 'About'}))
 
-    # sex = forms.ChoiceField(choices=SEX_CHOICES, widget=forms.Select(attrs={'class': 'input100',
-    #                                                                         'id': 'sex'}))
+    gender = forms.ChoiceField(choices=GenderChoices.choices(), widget=forms.Select(attrs={'class': 'input100',
+                                                                                           'id': 'sex',
+                                                                                           'placeholder': 'Select you gender',
+                                                                                           }))
+
+    age = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'input100',
+                                                           'placeholder': 'Age',
+                                                           'id': 'age',
+                                                           }))
 
     class Meta:
         model = User
@@ -79,8 +71,8 @@ class CreateUserForm(forms.ModelForm):
             'username', 'first_name', 'last_name', 'email', 'password1', 'password2',
             'mobile_number',
             'about',
-            # 'sex',
-            # 'profile_picture'
+            'gender',
+            'age',
         )
 
         exclude = ('is_active', 'is_staff', 'date_joined', 'permission', 'password')

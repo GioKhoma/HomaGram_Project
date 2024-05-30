@@ -2,6 +2,7 @@ from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
 from django.core.validators import validate_email
+from .choices import GenderChoices
 
 
 class UserManager(BaseUserManager):
@@ -41,24 +42,16 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    profile_picture = models.ImageField(null=True, blank=True, upload_to='img/profile_img', default='img/default_img.jpg')
     username = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     mobile_number = models.CharField(max_length=20)
     about = models.CharField(max_length=250)
-
-    MALE = 'Male'
-    FEMALE = 'Female'
-    SEX_CHOICES = [
-        (MALE, 'Male'),
-        (FEMALE, 'Female'),
-    ]
-
-    sex = models.CharField(
+    age = models.IntegerField(default=0)
+    gender = models.CharField(
         max_length=6,
-        choices=SEX_CHOICES,
+        choices=GenderChoices.choices(),
         blank=True,
         null=True,
         default=None,

@@ -11,19 +11,15 @@ from django.core.mail import send_mail
 
 def registration(request):
     form = CreateUserForm()
-    print('get method')
 
     if request.method == 'POST':
-        print('post method')
         form = CreateUserForm(request.POST, request.FILES)
-        print('form instantiated')
         if form.is_valid():
-            print('form is valid')
             form.save()
 
             return redirect('users:login')
         else:
-            print('form is invalid')
+            return HttpResponse('form is invalid')
 
     context = {'form': form}
 

@@ -94,11 +94,9 @@
 {% for user in users %}
     <div class="profile_feed">
         <a href="{% url 'homagram_app:users_profiles' user.id %}" class="view-profile-btn">View Profile</a>
-        {% if user.profile_picture %}
-            <img src="{{ user.profile_picture.url }}" alt="Profile Picture">
-        {% else %}
-            <img src="{% static 'media/default_img.jpg' %}" alt="Default Profile Picture">
-        {% endif %}
+
+            <img src="{{ user_profile.profile_photo.url }}" alt="Profile Picture">
+
         <h2>{{ user.first_name|title }} {{ user.last_name|title }}</h2>
         <p>{{ user.about }}</p>
     </div>
