@@ -96,14 +96,34 @@ def send_email(request):
     return render(request, 'homagram_app/users_profiles.html')
 
 
-# def delete_resume(request):
-#     resumedlt = UserProfile.objects.values('resume').get(user=request.user)
+def delete_resume(request):
+    # remove_resume = UserProfile.objects.get(id=resume_id)
+    user_profile = get_object_or_404(UserProfile, user=request.user.userprofile)
+    print('user_profile geeet')
+    if request.method == 'POST':
+        print('pooost')
+        user_profile.resume = None
+        print('nonee')
+        user_profile.save()
+        print('saved')
+
+        # remove_resume.resume.delete()
+        return redirect('hoamgram_app:edit_profile')
+
+    context = {
+        # 'remove_resume': remove_resume,
+        'user_profile': user_profile,
+    }
+
+    return render(request, 'homagram_app/edit_profile.html', context)
+
+#
+# def delete_factories(request, factory_id):
+#     factory = DeliveryAddress.objects.get(id=factory_id)
 #
 #     if request.method == 'POST':
-#         resumedlt.delete()
-#         return redirect('homagram_app:users_profiles')
+#         factory.delete()
+#         return redirect('customer_profile:customerFactories')
 #
-#     context = {'resumedlt': resumedlt}
-#     return render(request, 'homagram_app/edit_profile.html', context)
-
-
+#     context = {'factory': factory}
+#     return render(request, 'customer_profile/customer_factories.html', context)

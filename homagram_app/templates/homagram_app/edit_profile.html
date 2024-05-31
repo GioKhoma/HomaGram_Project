@@ -69,7 +69,7 @@
 						</div>
 
 
-						{% if user.userprofile.profile_photo %}
+						{% if user.userprofile.profile_photo and user.userprofile.profile_photo.url != '/media/img/default_img.jpg' %}
 							<div class="wrap-input100 validate-input">
 									<a target="_blank" href="{{ user_profile.profile_photo.url }}">Picture Link</a>
 
@@ -129,10 +129,10 @@
 						<div class="wrap-input100 validate-input" data-validate = "Upload Resume">
 								<a class="resume_link" target="_blank" href="{{ user_profile.resume.url }}">Resume Link</a>
 
-<!--								<form action=" url 'homagram_app:delete_resume' " method="post" enctype="multipart/form-data" class="login100-form validate-form p-b-33 p-t-5">-->
-<!--									{% csrf_token %}-->
-<!--									<button type="submit" class="delete_resume">Delete Resume</button>-->
-<!--								</form>-->
+								<form action="{% url 'homagram_app:delete_resume' %}" method="post" enctype="multipart/form-data">
+									{% csrf_token %}
+									<button type="submit" class="delete_resume">Delete Resume</button>
+								</form>
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 						{% else %}

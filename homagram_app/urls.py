@@ -9,7 +9,7 @@ urlpatterns = [
     path('send_email/', views.send_email, name='send_email'),
     # path('upload_resume/', views.upload_resume, name='upload_resume'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
-    # path('delete_resume/', views.delete_resume, name='delete_resume'),
+    path('delete_resume', views.delete_resume, name='delete_resume'),
 ]
 
 # htmx_urlpatterns = [
