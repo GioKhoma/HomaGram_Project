@@ -7,7 +7,7 @@
 
 {% block content %}
 
-	
+
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('{% static 'registration/images/bg-01.jpg' %}');">
 			<div class="wrap-login100 p-t-30 p-b-50">
@@ -68,11 +68,20 @@
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 
-						<div class="wrap-input100 validate-input" data-validate = "Enter username">
-								{{ form.profile_photo }}
 
-							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
-						</div>
+						{% if user.userprofile.profile_photo %}
+							<div class="wrap-input100 validate-input">
+									<a target="_blank" href="{{ user_profile.profile_photo.url }}">Picture Link</a>
+
+								<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+							</div>
+						{% else %}
+							<div class="wrap-input100 validate-input">
+									{{ form.profile_photo }}
+
+								<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+							</div>
+						{% endif %}
 
 						<div class="wrap-input100 validate-input" data-validate = "Enter username">
 								{{ form.about_facts }}
@@ -116,12 +125,23 @@
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
 
-						<div class="wrap-input100 validate-input" data-validate = "Enter username">
+						{% if user.userprofile.resume %}
+						<div class="wrap-input100 validate-input" data-validate = "Upload Resume">
+								<a class="resume_link" target="_blank" href="{{ user_profile.resume.url }}">Resume Link</a>
+
+<!--								<form action=" url 'homagram_app:delete_resume' " method="post" enctype="multipart/form-data" class="login100-form validate-form p-b-33 p-t-5">-->
+<!--									{% csrf_token %}-->
+<!--									<button type="submit" class="delete_resume">Delete Resume</button>-->
+<!--								</form>-->
+							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
+						</div>
+						{% else %}
+							<div class="wrap-input100 validate-input" data-validate = "Upload Resume">
 								{{ form.resume }}
 
 							<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 						</div>
-
+						{% endif %}
 
 <!--					</div>-->
 
@@ -129,17 +149,17 @@
 							<button type="submit" class="login100-form-btn">
 								Save
 							</button>
-	<!--						<a class="signup_button" href="{% url 'users:login' %}">Sing In</a>-->
+							<a class="signup_button" href="{% url 'homagram_app:users_profiles' user.id %}">Back</a>
 						</div>
 
 				</form>
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div id="dropDownSelect1"></div>
-	
+
 <!--===============================================================================================-->
 	<script src="{% static 'registration/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 <!--===============================================================================================-->
@@ -156,6 +176,13 @@
 	<script src="{% static 'registration/vendor/countdowntime/countdowntime.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{% static 'registration/js/main.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+
+
+
 
 {% endblock %}
 

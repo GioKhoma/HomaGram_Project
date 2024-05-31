@@ -36,7 +36,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -191,7 +191,7 @@
   });
 
   /**
-   * Initiate portfolio lightbox 
+   * Initiate portfolio lightbox
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'
@@ -256,8 +256,78 @@
   });
 
   /**
-   * Initiate Pure Counter 
+   * Initiate Pure Counter
    */
   new PureCounter();
 
 })()
+
+
+
+
+// ====== upload file =================
+
+// // Create a new script element
+// var script = document.createElement('script');
+//
+// // Set the src attribute to the AngularJS library link
+// script.src = 'https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js';
+//
+// // Append the script element to the document's head
+// document.head.appendChild(script);
+//
+//
+// var app = angular.module("app", ["myDirectives"]);
+// var myDirectives = angular.module("myDirectives", []);
+//
+// app.controller("UploadController", function ($log) {
+//   this.upload = function () {
+//     $log.info("Uploading:", this.file || "no file selected!");
+//   }
+// })
+//
+// myDirectives.directive("myFileUpload", function ($compile) {
+//   return {
+//     restrict: "AE",
+//     require: "ngModel",
+//     scope: true,
+//     link: link
+//   };
+//
+//   function link (scope, element, attrs, ngModel) {
+//     var input = angular.element("<input type=\"file\" style=\"display: none;\">");
+//
+//     input.bind("browse", function () {
+//       this.click();
+//     });
+//
+//     input.bind("change", function (changed) {
+//       if (changed.target.files.length < 1) {
+//         return;
+//       }
+//
+//       var fileName = changed.target.files[0].name;
+//       var reader = new FileReader();
+//
+//       reader.onload = function (loaded) {
+//         scope.fileName = fileName;
+//         ngModel.$setViewValue(loaded.target.result);
+//       };
+//
+//       reader.readAsDataURL(changed.target.files[0]);
+//     });
+//
+//     $compile(input)(scope);
+//     element.append(input);
+//
+//     scope.browse = function () {
+//       input.triggerHandler("browse");
+//     };
+//
+//     scope.reset = function () {
+//       scope.fileName = null;
+//       ngModel.$setViewValue(null);
+//     };
+//   }
+// });
+

@@ -44,12 +44,17 @@ def edit_profile(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
         if form.is_valid():
+            if 'resume' in request.FILES:
+                user_profile.resume = request.FILES['resume']
             form.save()
             return redirect('homagram_app:users_profiles', user_id=user_profile.user_id)
     else:
         form = UserProfileForm(instance=user_profile)
 
-    return render(request, 'homagram_app/edit_profile.html', {'form': form})
+    context = {'form': form,
+               'user_profile': user_profile,
+               }
+    return render(request, 'homagram_app/edit_profile.html', context)
 
 
 def inner_page(request):
@@ -91,9 +96,14 @@ def send_email(request):
     return render(request, 'homagram_app/users_profiles.html')
 
 
-def delete_resume(request):
-    if request.method == 'POST':
-        request.user.userprofile.resume.delete()
-        return HttpResponse("resume deleted successfully")
+# def delete_resume(request):
+#     resumedlt = UserProfile.objects.values('resume').get(user=request.user)
+#
+#     if request.method == 'POST':
+#         resumedlt.delete()
+#         return redirect('homagram_app:users_profiles')
+#
+#     context = {'resumedlt': resumedlt}
+#     return render(request, 'homagram_app/edit_profile.html', context)
 
-    return HttpResponse("Error: Couldn't delete resume", status=400)
+

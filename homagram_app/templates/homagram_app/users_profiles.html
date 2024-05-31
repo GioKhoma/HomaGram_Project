@@ -197,19 +197,20 @@
 
       <h3>
         {{ user_profile.resume_text }}
+
         {% if request.user.is_authenticated %}
           {% if request.user == user_profile.user %}
             {% if user_profile.resume %}
               <a target="_blank" href="{{ user_profile.resume.url }}">Download Resume</a>
 
 <!--              <form method="post" enctype="multipart/form-data">-->
-                {% csrf_token %}
+<!--                {% csrf_token %}-->
 <!--                    <button type="submit" name="delete_resume" class="login100-form-btn">-->
 <!--                        Delete Resume-->
 <!--                    </button>-->
 
 <!--                  <button type="submit" class="login100-form-btn"-->
-<!--                  hx-delete="{% url 'homagram_app:delete_resume' %}"-->
+<!--                  hx-delete=" url 'homagram_app:delete_resume' "-->
 <!--                  hx-target="#profile"-->
 <!--                  hx-trigger="click"-->
 <!--                  hx-confirm="Are you sure you want to delete your resume?">-->
@@ -248,63 +249,6 @@
 
   </div>
 </section><!-- End Resume Section -->
-
-<!--    =============== resume upload with htmx================-->
-<!--<section id="resume" class="resume">-->
-<!--  <div class="container">-->
-
-<!--    <div class="section-title">-->
-<!--      <h2>Resume</h2>-->
-
-<!--      {% if request.user.is_authenticated %}-->
-<!--            {% if request.user == user_profile.user %}-->
-<!--              <a class="edit_btn" href="{% url 'homagram_app:edit_profile' %}"><h5>Edit Resume</h5></a>-->
-<!--            {% endif %}-->
-<!--          {% endif %}-->
-
-<!--      <h3>-->
-<!--        {{ user_profile.resume_text }}-->
-<!--        {% if request.user.is_authenticated %}-->
-<!--          {% if request.user == user_profile.user %}-->
-<!--            {% if user_profile.resume %}-->
-<!--              <a target="_blank" href="{{ user_profile.resume.url }}">Download Resume</a>-->
-
-<!--              <form method="post" enctype="multipart/form-data">-->
-<!--                {% csrf_token %}-->
-<!--                    <button type="submit" name="delete_resume" class="login100-form-btn">-->
-<!--                        Delete Resume-->
-<!--                    </button>-->
-<!--              </form>-->
-<!--            {% else %}-->
-<!--              <span style="color: red;">You have not uploaded a resume</span>-->
-<!--                  <form method="post" enctype="multipart/form-data" hx-post="{% url 'homagram_app:users_profiles' user_id=user_profile.user.id %}" hx-swap="outerHTML:#resume-content">-->
-<!--                    {% csrf_token %}-->
-<!--                    <div class="wrap-input100 validate-input" data-validate="Enter username">-->
-<!--                        {{ form.resume }}-->
-<!--                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>-->
-<!--                    </div>-->
-<!--                    <div class="container-login100-form-btn m-t-32">-->
-<!--                        <button type="submit" class="login100-form-btn">-->
-<!--                            Save-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            {% endif %}-->
-<!--          {% else %}-->
-<!--            {% if user_profile.resume %}-->
-<!--              <a target="_blank" href="{{ user_profile.resume.url }}">Download Resume</a>-->
-<!--            {% else %}-->
-<!--              <span style="color: red;">This user has not uploaded a resume</span>-->
-<!--            {% endif %}-->
-<!--          {% endif %}-->
-<!--        {% else %}-->
-<!--          <span style="color: red;">Users have not uploaded a resume</span>-->
-<!--        {% endif %}-->
-<!--      </h3>-->
-<!--    </div>-->
-
-<!--  </div>-->
-<!--</section>&lt;!&ndash; End Resume Section &ndash;&gt;-->
 
 
     <!-- ======= Contact Section ======= -->

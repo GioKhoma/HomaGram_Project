@@ -1145,7 +1145,8 @@ section {
 }
 
 #footer .copyright {
-  text-align: center;
+  text-align: left;
+  margin-left: 35px;
 }
 
 #footer .credits {
@@ -1384,3 +1385,12 @@ button:hover {
   bottom: 0;
   left: 0;
 }
+
+
+
+
+/*================upload file forms================*/
+
+/*.upload_file {*/
+
+/*}*/
