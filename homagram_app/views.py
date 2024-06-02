@@ -57,10 +57,6 @@ def edit_profile(request):
     return render(request, 'homagram_app/edit_profile.html', context)
 
 
-def inner_page(request):
-    return render(request, 'homagram_app/inner-page.html')
-
-
 def feed_page(request):
     form = UserForm()
     users = User.objects.filter(is_superuser=False)
@@ -117,13 +113,4 @@ def delete_resume(request):
 
     return render(request, 'homagram_app/edit_profile.html', context)
 
-#
-# def delete_factories(request, factory_id):
-#     factory = DeliveryAddress.objects.get(id=factory_id)
-#
-#     if request.method == 'POST':
-#         factory.delete()
-#         return redirect('customer_profile:customerFactories')
-#
-#     context = {'factory': factory}
-#     return render(request, 'customer_profile/customer_factories.html', context)
+

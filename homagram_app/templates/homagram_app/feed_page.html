@@ -73,7 +73,7 @@
 <!--              </div>-->
 <!--            </div>-->
 
-
+            <li><a href="{% url 'users:change_password' %}">Change Password</a></li>
             <li><a href="{% url 'users:logout' %}">Log Out</a></li>
           </ol>
         </div>
@@ -95,7 +95,7 @@
     <div class="profile_feed">
         <a href="{% url 'homagram_app:users_profiles' user.id %}" class="view-profile-btn">View Profile</a>
 
-            <img src="{{ user_profile.profile_photo.url }}" alt="Profile Picture">
+            <img src="{{ user.userprofile.profile_photo.url }}" alt="Profile Picture">
 
         <h2>{{ user.first_name|title }} {{ user.last_name|title }}</h2>
         <p>{{ user.about }}</p>
